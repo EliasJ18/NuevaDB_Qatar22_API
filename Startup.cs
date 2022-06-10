@@ -2,11 +2,14 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using NuevaDB_Qatar22.Controllers;
+using NuevaDB_Qatar22.Controllers.Contexts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,10 +30,19 @@ namespace NuevaDB_Qatar22
         public void ConfigureServices(IServiceCollection services)
         {
 
+            services.AddDbContext<ApplicationDbContext>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "NuevaDB_Qatar22", Version = "v1" });
+            });
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("PermitirApiRequest",
+                    builder => builder.WithOrigins("http://127.0.0.1:5500/index.html").WithMethods("GET", "POST").AllowAnyHeader());
             });
         }
 
@@ -47,6 +59,8 @@ namespace NuevaDB_Qatar22
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors();
 
             app.UseAuthorization();
 

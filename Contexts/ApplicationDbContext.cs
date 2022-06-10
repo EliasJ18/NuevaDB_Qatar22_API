@@ -11,6 +11,6 @@ namespace NuevaDB_Qatar22.Controllers.Contexts
 
         }
 
-        public DbSet<Jugadore> Nombre { get; set; }
+        public DbSet<Clube> Clubes { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 #nullable disable
 
@@ -12,7 +13,7 @@ namespace NuevaDB_Qatar22.Models
             Estadios = new HashSet<Estadio>();
             Fases = new HashSet<Fase>();
         }
-
+        [Key]
         public int IdCiudad { get; set; }
         public string Nombre { get; set; }
         public int? FkIdPaís { get; set; }
