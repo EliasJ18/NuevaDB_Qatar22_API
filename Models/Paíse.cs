@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 
 #nullable disable
 
 namespace NuevaDB_Qatar22.Models
 {
-    
     public partial class Paíse
     {
-        
         public Paíse()
         {
             Ciudades = new HashSet<Ciudade>();
@@ -19,13 +16,12 @@ namespace NuevaDB_Qatar22.Models
             SeleccionesEnGrupos = new HashSet<SeleccionesEnGrupo>();
         }
 
-        public int Id { get; set; }
+        public int IdPaises { get; set; }
         public string País { get; set; }
+        public string Imagen { get; set; }
 
         public virtual ICollection<Ciudade> Ciudades { get; set; }
-        [NotMapped]
         public virtual ICollection<Partido> PartidoFkIdPaísANavigations { get; set; }
-        [NotMapped]
         public virtual ICollection<Partido> PartidoFkIdPaísBNavigations { get; set; }
         public virtual ICollection<Plantilla> Plantillas { get; set; }
         public virtual ICollection<SeleccionesEnGrupo> SeleccionesEnGrupos { get; set; }

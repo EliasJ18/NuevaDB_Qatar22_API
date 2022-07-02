@@ -37,7 +37,7 @@ namespace NuevaDB_Qatar22.Models
             if (!optionsBuilder.IsConfigured)
             {
 //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB; Database=Qatar22DB; Trusted_Connection=True");
+                optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB; Database=Qatar22DB; Trusted_Connection=True;");
             }
         }
 
@@ -175,16 +175,11 @@ namespace NuevaDB_Qatar22.Models
 
             modelBuilder.Entity<Fgrupo>(entity =>
             {
+                entity.HasKey(e => e.IdGrupos);
+
                 entity.ToTable("FGrupos");
 
-                entity.Property(e => e.Id)
-                    .HasMaxLength(1)
-                    .IsUnicode(false)
-                    .HasColumnName("id")
-                    .IsFixedLength(true);
-
                 entity.Property(e => e.Grupos)
-                    .IsRequired()
                     .HasMaxLength(10)
                     .IsUnicode(false);
             });
@@ -199,24 +194,13 @@ namespace NuevaDB_Qatar22.Models
 
                 entity.Property(e => e.FkIdPosicion).HasColumnName("FK_id_posicion");
 
+                entity.Property(e => e.Imagen)
+                    .HasMaxLength(40)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.Nombre)
                     .HasMaxLength(20)
                     .IsUnicode(false);
-
-                entity.HasOne(d => d.FkIdClubNavigation)
-                    .WithMany(p => p.Jugadores)
-                    .HasForeignKey(d => d.FkIdClub)
-                    .HasConstraintName("FK_Jugadores_Clubes");
-
-                entity.HasOne(d => d.FkIdPlantillaNavigation)
-                    .WithMany(p => p.Jugadores)
-                    .HasForeignKey(d => d.FkIdPlantilla)
-                    .HasConstraintName("FK_Jugadores_Plantillas");
-
-                entity.HasOne(d => d.FkIdPosicionNavigation)
-                    .WithMany(p => p.Jugadores)
-                    .HasForeignKey(d => d.FkIdPosicion)
-                    .HasConstraintName("FK_Jugadores_Posiciones");
             });
 
             modelBuilder.Entity<Partido>(entity =>
@@ -260,7 +244,14 @@ namespace NuevaDB_Qatar22.Models
 
             modelBuilder.Entity<Paíse>(entity =>
             {
-                entity.Property(e => e.Id).HasColumnName("id");
+                entity.HasKey(e => e.IdPaises);
+
+                entity.Property(e => e.IdPaises).HasColumnName("idPaises");
+
+                entity.Property(e => e.Imagen)
+                    .HasMaxLength(30)
+                    .IsUnicode(false)
+                    .HasColumnName("imagen");
 
                 entity.Property(e => e.País)
                     .HasMaxLength(25)
@@ -294,18 +285,15 @@ namespace NuevaDB_Qatar22.Models
 
             modelBuilder.Entity<SeleccionesEnGrupo>(entity =>
             {
+                entity.HasKey(e => e.IdSeleccionesEnGrupos);
+
                 entity.ToTable("Selecciones En Grupos");
 
-                entity.Property(e => e.Id)
+                entity.Property(e => e.IdSeleccionesEnGrupos)
                     .ValueGeneratedNever()
-                    .HasColumnName("id");
+                    .HasColumnName("idSeleccionesEnGrupos");
 
-                entity.Property(e => e.FkIdFgrupos)
-                    .IsRequired()
-                    .HasMaxLength(1)
-                    .IsUnicode(false)
-                    .HasColumnName("FK_id_Fgrupos")
-                    .IsFixedLength(true);
+                entity.Property(e => e.FkIdFgrupos).HasColumnName("FK_id_Fgrupos");
 
                 entity.Property(e => e.FkIdPaís).HasColumnName("FK_id_país");
 

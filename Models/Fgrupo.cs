@@ -12,7 +12,7 @@ namespace NuevaDB_Qatar22.Models
             SeleccionesEnGrupos = new HashSet<SeleccionesEnGrupo>();
         }
 
-        public string Id { get; set; }
+        public int IdGrupos { get; set; }
         public string Grupos { get; set; }
 
         public virtual ICollection<SeleccionesEnGrupo> SeleccionesEnGrupos { get; set; }

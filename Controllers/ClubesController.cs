@@ -12,9 +12,9 @@ namespace NuevaDB_Qatar22.Controllers
     [EnableCors("PermitirApiRequest")]
     public class ClubesController : ControllerBase
     {
-        private readonly ApplicationDbContext context;
+        private readonly Qatar22DBContext context;
 
-        public ClubesController(ApplicationDbContext context)
+        public ClubesController(Qatar22DBContext context)
         {
             this.context = context;
         }
