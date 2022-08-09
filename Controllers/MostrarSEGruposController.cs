@@ -22,7 +22,7 @@ namespace NuevaDB_Qatar22.Controllers
             using (context)
             {
                 var query = from a in context.SeleccionesEnGrupos
-                            join b in context.Países
+                            join b in context.Paises
                             on a.FkIdPaís equals b.IdPaises
                             join c in context.Fgrupos
                             on a.FkIdFgrupos equals c.IdGrupos
@@ -32,6 +32,7 @@ namespace NuevaDB_Qatar22.Controllers
                                 IdPaises = b.IdPaises,
                                 País = b.País,
                                 Imagen = b.Imagen,
+                                IdGrupos = c.IdGrupos,
                                 Grupos = c.Grupos
                                 
                             };

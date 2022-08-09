@@ -1,0 +1,71 @@
+﻿@model IEnumerable<NuevaDB_Qatar22.Models.Partido>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaHora)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FkIdEstado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FkIdClima)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FkIdEstadioNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FkIdFaseNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FkIdPaísANavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FkIdPaísBNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaHora)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FkIdEstado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FkIdClima)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FkIdEstadioNavigation.IdEstadio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FkIdFaseNavigation.IdFase)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FkIdPaísANavigation.IdPaises)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FkIdPaísBNavigation.IdPaises)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.IdPartido">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.IdPartido">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.IdPartido">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

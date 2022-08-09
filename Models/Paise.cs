@@ -5,9 +5,9 @@ using System.Collections.Generic;
 
 namespace NuevaDB_Qatar22.Models
 {
-    public partial class Paíse
+    public partial class Paise
     {
-        public Paíse()
+        public Paise()
         {
             Ciudades = new HashSet<Ciudade>();
             EstadisticasTotalesDelEquipos = new HashSet<EstadisticasTotalesDelEquipo>();

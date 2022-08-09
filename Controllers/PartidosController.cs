@@ -1,25 +1,26 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using NuevaDB_Qatar22.Models;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Mvc;
+using NuevaDB_Qatar22.Models;
 
 namespace NuevaDB_Qatar22.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PaisesController : ControllerBase
+    public class PartidosController : Controller
     {
         private readonly Qatar22DBContext context;
 
-        public PaisesController(Qatar22DBContext context)
+        public PartidosController(Qatar22DBContext context)
         {
             this.context = context;
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<Paise>> Get()
+        public ActionResult<IEnumerable<Partido>> Get()
         {
-            return context.Paises.ToList();
+            return context.Partidos.ToList();
         }
     }
 }

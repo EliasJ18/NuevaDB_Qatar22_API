@@ -7,19 +7,19 @@ namespace NuevaDB_Qatar22.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PaisesController : ControllerBase
+    public class EstadisticasTotalesDelEquipoController : Controller
     {
         private readonly Qatar22DBContext context;
 
-        public PaisesController(Qatar22DBContext context)
+        public EstadisticasTotalesDelEquipoController(Qatar22DBContext context)
         {
             this.context = context;
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<Paise>> Get()
+        public ActionResult<IEnumerable<EstadisticasTotalesDelEquipo>> Get()
         {
-            return context.Paises.ToList();
+            return context.EstadisticasTotalesDelEquipos.ToList();
         }
     }
 }

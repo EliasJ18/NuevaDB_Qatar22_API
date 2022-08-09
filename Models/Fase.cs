@@ -9,14 +9,14 @@ namespace NuevaDB_Qatar22.Models
     {
         public Fase()
         {
+            EstadisticasTotalesDelEquipos = new HashSet<EstadisticasTotalesDelEquipo>();
             Partidos = new HashSet<Partido>();
         }
 
         public int IdFase { get; set; }
-        public int? FkIdCiudad { get; set; }
         public string Nombre { get; set; }
 
-        public virtual Ciudade FkIdCiudadNavigation { get; set; }
+        public virtual ICollection<EstadisticasTotalesDelEquipo> EstadisticasTotalesDelEquipos { get; set; }
         public virtual ICollection<Partido> Partidos { get; set; }
     }
 }

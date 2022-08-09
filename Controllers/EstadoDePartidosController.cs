@@ -7,19 +7,19 @@ namespace NuevaDB_Qatar22.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PaisesController : ControllerBase
+    public class EstadoDePartidosController
     {
         private readonly Qatar22DBContext context;
 
-        public PaisesController(Qatar22DBContext context)
+        public EstadoDePartidosController(Qatar22DBContext context)
         {
             this.context = context;
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<Paise>> Get()
+        public ActionResult<IEnumerable<EstadoDePartido>> Get()
         {
-            return context.Paises.ToList();
+            return context.EstadoDePartidos.ToList();
         }
     }
 }

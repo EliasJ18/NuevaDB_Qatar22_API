@@ -18,16 +18,18 @@ namespace NuevaDB_Qatar22.Models
         }
 
         public virtual DbSet<Ciudade> Ciudades { get; set; }
+        public virtual DbSet<Clima> Climas { get; set; }
         public virtual DbSet<Clube> Clubes { get; set; }
         public virtual DbSet<Estadio> Estadios { get; set; }
         public virtual DbSet<EstadisticasDeEquipoEnPartido> EstadisticasDeEquipoEnPartidos { get; set; }
         public virtual DbSet<EstadisticasDelPartido> EstadisticasDelPartidos { get; set; }
         public virtual DbSet<EstadisticasTotalesDelEquipo> EstadisticasTotalesDelEquipos { get; set; }
+        public virtual DbSet<EstadoDePartido> EstadoDePartidos { get; set; }
         public virtual DbSet<Fase> Fases { get; set; }
         public virtual DbSet<Fgrupo> Fgrupos { get; set; }
         public virtual DbSet<Jugadore> Jugadores { get; set; }
+        public virtual DbSet<Paise> Paises { get; set; }
         public virtual DbSet<Partido> Partidos { get; set; }
-        public virtual DbSet<Paíse> Países { get; set; }
         public virtual DbSet<Plantilla> Plantillas { get; set; }
         public virtual DbSet<Posicione> Posiciones { get; set; }
         public virtual DbSet<SeleccionesEnGrupo> SeleccionesEnGrupos { get; set; }
@@ -64,6 +66,19 @@ namespace NuevaDB_Qatar22.Models
                     .HasConstraintName("FK_Ciudades_Países");
             });
 
+            modelBuilder.Entity<Clima>(entity =>
+            {
+                entity.HasKey(e => e.IdClima)
+                    .HasName("PK_Clima");
+
+                entity.Property(e => e.IdClima).HasColumnName("id_clima");
+
+                entity.Property(e => e.Clima1)
+                    .HasMaxLength(20)
+                    .IsUnicode(false)
+                    .HasColumnName("clima");
+            });
+
             modelBuilder.Entity<Clube>(entity =>
             {
                 entity.Property(e => e.Id).HasColumnName("id");
@@ -95,7 +110,7 @@ namespace NuevaDB_Qatar22.Models
             {
                 entity.HasNoKey();
 
-                entity.ToTable("Estadisticas de Equipo en Partido");
+                entity.ToTable("EstadisticasDeEquipoEnPartido");
 
                 entity.Property(e => e.FkIdPartido).HasColumnName("FK_id_partido");
 
@@ -116,7 +131,7 @@ namespace NuevaDB_Qatar22.Models
             {
                 entity.HasNoKey();
 
-                entity.ToTable("Estadisticas Del Partido");
+                entity.ToTable("EstadisticasDelPartido");
 
                 entity.Property(e => e.FkIdPartido).HasColumnName("FK_id_partido");
 
@@ -130,9 +145,12 @@ namespace NuevaDB_Qatar22.Models
 
             modelBuilder.Entity<EstadisticasTotalesDelEquipo>(entity =>
             {
-                entity.HasNoKey();
+                entity.HasKey(e => e.EstTotalEquipoId)
+                    .HasName("PK_Estadisticas Totales del Equipo");
 
-                entity.ToTable("Estadisticas Totales del Equipo");
+                entity.ToTable("EstadisticasTotalesDelEquipo");
+
+                entity.Property(e => e.EstTotalEquipoId).ValueGeneratedNever();
 
                 entity.Property(e => e.FkIdFase).HasColumnName("FK_id_fase");
 
@@ -143,14 +161,27 @@ namespace NuevaDB_Qatar22.Models
                 entity.Property(e => e.Gf).HasColumnName("GF");
 
                 entity.HasOne(d => d.FkIdFaseNavigation)
-                    .WithMany()
+                    .WithMany(p => p.EstadisticasTotalesDelEquipos)
                     .HasForeignKey(d => d.FkIdFase)
                     .HasConstraintName("FK_Estadisticas Totales del Equipo_Fases");
 
                 entity.HasOne(d => d.FkIdPaísNavigation)
-                    .WithMany()
+                    .WithMany(p => p.EstadisticasTotalesDelEquipos)
                     .HasForeignKey(d => d.FkIdPaís)
                     .HasConstraintName("FK_Estadisticas Totales del Equipo_Países");
+            });
+
+            modelBuilder.Entity<EstadoDePartido>(entity =>
+            {
+                entity.HasKey(e => e.IdEstado)
+                    .HasName("PK_EstadoDePartido");
+
+                entity.Property(e => e.IdEstado).HasColumnName("id_estado");
+
+                entity.Property(e => e.Estado)
+                    .HasMaxLength(20)
+                    .IsUnicode(false)
+                    .HasColumnName("estado");
             });
 
             modelBuilder.Entity<Fase>(entity =>
@@ -161,26 +192,20 @@ namespace NuevaDB_Qatar22.Models
                     .ValueGeneratedNever()
                     .HasColumnName("id_Fase");
 
-                entity.Property(e => e.FkIdCiudad).HasColumnName("FK_id_ciudad");
-
                 entity.Property(e => e.Nombre)
                     .HasMaxLength(20)
                     .IsUnicode(false);
-
-                entity.HasOne(d => d.FkIdCiudadNavigation)
-                    .WithMany(p => p.Fases)
-                    .HasForeignKey(d => d.FkIdCiudad)
-                    .HasConstraintName("FK_Fases_Ciudades");
             });
 
             modelBuilder.Entity<Fgrupo>(entity =>
             {
-                entity.HasKey(e => e.IdGrupos);
+                entity.HasKey(e => e.IdGrupos)
+                    .HasName("PK_Fgrupos");
 
                 entity.ToTable("FGrupos");
 
                 entity.Property(e => e.Grupos)
-                    .HasMaxLength(10)
+                    .HasMaxLength(8)
                     .IsUnicode(false);
             });
 
@@ -203,6 +228,23 @@ namespace NuevaDB_Qatar22.Models
                     .IsUnicode(false);
             });
 
+            modelBuilder.Entity<Paise>(entity =>
+            {
+                entity.HasKey(e => e.IdPaises)
+                    .HasName("PK_Países");
+
+                entity.Property(e => e.IdPaises).HasColumnName("idPaises");
+
+                entity.Property(e => e.Imagen)
+                    .HasMaxLength(30)
+                    .IsUnicode(false)
+                    .HasColumnName("imagen");
+
+                entity.Property(e => e.País)
+                    .HasMaxLength(25)
+                    .IsUnicode(false);
+            });
+
             modelBuilder.Entity<Partido>(entity =>
             {
                 entity.HasKey(e => e.IdPartido);
@@ -213,7 +255,11 @@ namespace NuevaDB_Qatar22.Models
                     .HasColumnType("date")
                     .HasColumnName("Fecha_Hora");
 
+                entity.Property(e => e.FkIdClima).HasColumnName("FK_id_clima");
+
                 entity.Property(e => e.FkIdEstadio).HasColumnName("FK_id_estadio");
+
+                entity.Property(e => e.FkIdEstado).HasColumnName("FK_id_estado");
 
                 entity.Property(e => e.FkIdFase).HasColumnName("FK_id_fase");
 
@@ -240,22 +286,6 @@ namespace NuevaDB_Qatar22.Models
                     .WithMany(p => p.PartidoFkIdPaísBNavigations)
                     .HasForeignKey(d => d.FkIdPaísB)
                     .HasConstraintName("FK_Partidos_Países1");
-            });
-
-            modelBuilder.Entity<Paíse>(entity =>
-            {
-                entity.HasKey(e => e.IdPaises);
-
-                entity.Property(e => e.IdPaises).HasColumnName("idPaises");
-
-                entity.Property(e => e.Imagen)
-                    .HasMaxLength(30)
-                    .IsUnicode(false)
-                    .HasColumnName("imagen");
-
-                entity.Property(e => e.País)
-                    .HasMaxLength(25)
-                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<Plantilla>(entity =>
@@ -285,9 +315,8 @@ namespace NuevaDB_Qatar22.Models
 
             modelBuilder.Entity<SeleccionesEnGrupo>(entity =>
             {
-                entity.HasKey(e => e.IdSeleccionesEnGrupos);
-
-                entity.ToTable("Selecciones En Grupos");
+                entity.HasKey(e => e.IdSeleccionesEnGrupos)
+                    .HasName("PK_Selecciones En Grupos");
 
                 entity.Property(e => e.IdSeleccionesEnGrupos)
                     .ValueGeneratedNever()
@@ -301,7 +330,7 @@ namespace NuevaDB_Qatar22.Models
                     .WithMany(p => p.SeleccionesEnGrupos)
                     .HasForeignKey(d => d.FkIdFgrupos)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Selecciones En Grupos_FGrupos");
+                    .HasConstraintName("FK_Selecciones En Grupos_Fgrupos");
 
                 entity.HasOne(d => d.FkIdPaísNavigation)
                     .WithMany(p => p.SeleccionesEnGrupos)

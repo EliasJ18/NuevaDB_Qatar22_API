@@ -5,21 +5,21 @@ using System.Linq;
 
 namespace NuevaDB_Qatar22.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api /[controller]")]
     [ApiController]
-    public class PaisesController : ControllerBase
+    public class ClimasController : ControllerBase
     {
         private readonly Qatar22DBContext context;
 
-        public PaisesController(Qatar22DBContext context)
+        public ClimasController(Qatar22DBContext context)
         {
             this.context = context;
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<Paise>> Get()
+        public ActionResult<IEnumerable<Clima>> Get()
         {
-            return context.Paises.ToList();
+            return context.Climas.ToList();
         }
     }
 }

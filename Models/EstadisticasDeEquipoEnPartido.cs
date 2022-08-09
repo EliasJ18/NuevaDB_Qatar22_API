@@ -15,6 +15,6 @@ namespace NuevaDB_Qatar22.Models
         public int? Lesionados { get; set; }
 
         public virtual Partido FkIdPartidoNavigation { get; set; }
-        public virtual Paíse FkIdPaísNavigation { get; set; }
+        public virtual Paise FkIdPaísNavigation { get; set; }
     }
 }

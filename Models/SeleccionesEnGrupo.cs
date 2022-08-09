@@ -12,6 +12,6 @@ namespace NuevaDB_Qatar22.Models
         public int FkIdPaís { get; set; }
 
         public virtual Fgrupo FkIdFgruposNavigation { get; set; }
-        public virtual Paíse FkIdPaísNavigation { get; set; }
+        public virtual Paise FkIdPaísNavigation { get; set; }
     }
 }
