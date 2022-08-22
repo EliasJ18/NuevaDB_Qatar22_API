@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace NuevaDB_Qatar22.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/equipos/estadisticas-totales")]
     [ApiController]
     public class MuestraEstTotEquiposController : ControllerBase
     {

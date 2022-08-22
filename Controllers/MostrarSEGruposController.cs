@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace NuevaDB_Qatar22.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/grupos/selecciones-en-grupos")]
     [ApiController]
     public class MostrarSEGruposController : ControllerBase
     {

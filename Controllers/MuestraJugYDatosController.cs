@@ -5,13 +5,13 @@ using System.Linq;
 
 namespace NuevaDB_Qatar22.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/jugadores/datos-de-jugadores")]
     [ApiController]
-    public class MuestraJugYPosicionesController : ControllerBase
+    public class MuestraJugYDatosController : ControllerBase
     {
         private readonly Qatar22DBContext context;
 
-        public MuestraJugYPosicionesController(Qatar22DBContext context)
+        public MuestraJugYDatosController(Qatar22DBContext context)
         {
             this.context = context;
         }

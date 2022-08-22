@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace NuevaDB_Qatar22.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/partidos/informacion")]
     [ApiController]
     public class MuestraInfoPartidosController : ControllerBase
     {
@@ -37,20 +37,18 @@ namespace NuevaDB_Qatar22.Controllers
                             select new MuestraInfoPartido
                             {
                                 idPartido = a.IdPartido,
-                                FkIdPaísA = b.IdPaises,
                                 PaísA = b.País,
-                                FkIdPaísB = b.IdPaises,
                                 PaísB = c.País,
-                                FkIdEstado = d.IdEstado,
-                                FkIdEstadio = e.IdEstadio,
-                                FkIdFase = f.IdFase,
-                                FkIdClima = g.IdClima,
+                                //FkIdEstado = d.IdEstado,
+                                //FkIdEstadio = e.IdEstadio,
+                                //FkIdFase = f.IdFase,
+                                //FkIdClima = g.IdClima,
                                 Estado = d.Estado,
                                 Estadio = e.Nombre,
                                 Fase = f.Nombre,
                                 Clima = g.Clima1
                             };
-                return query;
+                            return query.ToList();
             }
         }
     }
