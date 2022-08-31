@@ -23,9 +23,9 @@ namespace NuevaDB_Qatar22.Controllers
             {
                 var query = from a in context.Partidos
                             join b in context.Paises
-                            on a.FkIdPaísA equals b.IdPaises
+                            on a.FkIdPaisA equals b.IdPaises
                             join c in context.Paises
-                            on a.FkIdPaísB equals c.IdPaises
+                            on a.FkIdPaisB equals c.IdPaises
                             join d in context.EstadoDePartidos
                             on a.FkIdEstado equals d.IdEstado
                             join e in context.Estadios
@@ -37,12 +37,8 @@ namespace NuevaDB_Qatar22.Controllers
                             select new MuestraInfoPartido
                             {
                                 idPartido = a.IdPartido,
-                                PaísA = b.País,
-                                PaísB = c.País,
-                                //FkIdEstado = d.IdEstado,
-                                //FkIdEstadio = e.IdEstadio,
-                                //FkIdFase = f.IdFase,
-                                //FkIdClima = g.IdClima,
+                                PaisA = b.Pais,
+                                PaisB = c.Pais,
                                 Estado = d.Estado,
                                 Estadio = e.Nombre,
                                 Fase = f.Nombre,

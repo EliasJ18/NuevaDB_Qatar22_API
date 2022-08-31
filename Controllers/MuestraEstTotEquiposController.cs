@@ -28,7 +28,7 @@ namespace NuevaDB_Qatar22.Controllers
                              {
                                 EstTotalEquipoId = a.EstTotalEquipoId,
                                 IdPaises = b.IdPaises,
-                                País = b.País,
+                                Pais = b.Pais,
                                 Amarillas = a.Amarillas,
                                 Lesionados = a.Lesionados,
                                 GF = a.Gf,

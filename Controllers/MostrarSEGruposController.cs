@@ -30,7 +30,7 @@ namespace NuevaDB_Qatar22.Controllers
                             {
                                 idSeleccionesEnGrupos = a.IdSeleccionesEnGrupos,
                                 IdPaises = b.IdPaises,
-                                País = b.País,
+                                Pais = b.Pais,
                                 Imagen = b.Imagen,
                                 IdGrupos = c.IdGrupos,
                                 Grupos = c.Grupos

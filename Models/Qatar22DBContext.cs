@@ -240,7 +240,7 @@ namespace NuevaDB_Qatar22.Models
                     .IsUnicode(false)
                     .HasColumnName("imagen");
 
-                entity.Property(e => e.País)
+                entity.Property(e => e.Pais)
                     .HasMaxLength(25)
                     .IsUnicode(false);
             });
@@ -263,9 +263,9 @@ namespace NuevaDB_Qatar22.Models
 
                 entity.Property(e => e.FkIdFase).HasColumnName("FK_id_fase");
 
-                entity.Property(e => e.FkIdPaísA).HasColumnName("FK_id_paísA");
+                entity.Property(e => e.FkIdPaisA).HasColumnName("FK_id_paisA");
 
-                entity.Property(e => e.FkIdPaísB).HasColumnName("FK_id_paísB");
+                entity.Property(e => e.FkIdPaisB).HasColumnName("FK_id_paisB");
 
                 entity.HasOne(d => d.FkIdEstadioNavigation)
                     .WithMany(p => p.Partidos)
@@ -277,14 +277,14 @@ namespace NuevaDB_Qatar22.Models
                     .HasForeignKey(d => d.FkIdFase)
                     .HasConstraintName("FK_Partidos_Fases");
 
-                entity.HasOne(d => d.FkIdPaísANavigation)
-                    .WithMany(p => p.PartidoFkIdPaísANavigations)
-                    .HasForeignKey(d => d.FkIdPaísA)
+                entity.HasOne(d => d.FkIdPaisANavigation)
+                    .WithMany(p => p.PartidoFkIdPaisANavigations)
+                    .HasForeignKey(d => d.FkIdPaisA)
                     .HasConstraintName("FK_Partidos_Países");
 
-                entity.HasOne(d => d.FkIdPaísBNavigation)
-                    .WithMany(p => p.PartidoFkIdPaísBNavigations)
-                    .HasForeignKey(d => d.FkIdPaísB)
+                entity.HasOne(d => d.FkIdPaisBNavigation)
+                    .WithMany(p => p.PartidoFkIdPaisBNavigations)
+                    .HasForeignKey(d => d.FkIdPaisB)
                     .HasConstraintName("FK_Partidos_Países1");
             });
 
